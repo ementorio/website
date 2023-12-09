@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Library</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+
+  .navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    font-size: 16px;
+  }
+
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #007bff;
+  }
+
+  .navbar-nav .nav-item .nav-link.active {
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .logo-image {
+    width: 12.5%;
+  }
+
+
+  @media (max-width: 767px) {
+    .footer {
+      display: block;
+    }
+
+    .navbar-brand {
+      font-size: 20px;
+    }
+    .logo-image {
+        width: 25px;
+      }
+ 
+  }
+
+
+
+
+   /* Custom CSS for the modern header */
+   .hero {
+    background-color: #f7f7f7;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .membership-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .membership-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+
+  .membership-type {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .scroll-btn {
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 0;
+  }
+
+  .scroll-btn:hover {
+    background-color: #0069d9;
+  }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Logo.png" class="logo-image" alt="logo-image">
+        eMentor
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:tseretelidata2@gmail.com">Contact</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <div class="dropdown">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput" data-toggle="dropdown">
+            <div class="dropdown-menu" id="searchSuggestions"></div>
+          </div>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+
+    function handleSearch() {
+      const searchQuery = searchInput.value;
+
+      searchSuggestions.innerHTML = '';
+  
+      if (searchQuery.length > 0) {
+        const suggestions = [
+          { text: 'S.T. Tan. Applied Calculus for the Manager...', link: 'Calc.pdf' },
+          { text: 'Thomas - Calculus, Early Transcedentals', link: 'Calc2.pdf' },
+          { text: 'Suggestion 3', link: 'https://example.com/suggestion3' },
+          { text: 'Suggestion 4', link: 'https://example.com/suggestion4' },
+          { text: 'Suggestion 5', link: 'https://example.com/suggestion5' },
+          { text: 'Suggestion 6', link: 'www.myschoolway.github.io' },
+          { text: 'Suggestion 7', link: 'https://example.com/suggestion7' },
+          { text: 'Suggestion 8', link: 'https://example.com/suggestion8' },
+          { text: 'Suggestion 9', link: 'https://example.com/suggestion9' },
+          { text: 'Suggestion 10', link: 'https://example.com/suggestion10' },
+          { text: 'Suggestion 11', link: 'https://example.com/suggestion11' },
+          { text: 'Suggestion 12', link: 'https://example.com/suggestion12' },
+          { text: 'Suggestion 13', link: 'https://example.com/suggestion13' },
+          { text: 'Suggestion 14', link: 'https://example.com/suggestion14' },
+          { text: 'Suggestion 15', link: 'https://example.com/suggestion15' },
+          { text: 'Suggestion 16', link: 'https://example.com/suggestion16' },
+          { text: 'Suggestion 17', link: 'https://example.com/suggestion17' },
+          { text: 'Suggestion 18', link: 'https://example.com/suggestion18' }
+        ];
+  
+        const matchedSuggestions = suggestions.filter(suggestion => suggestion.text.toLowerCase().includes(searchQuery.toLowerCase()));
+  
+        for (let i = 0; i < matchedSuggestions.length; i++) {
+          const suggestion = document.createElement('a');
+          suggestion.classList.add('dropdown-item');
+          suggestion.href = matchedSuggestions[i].link;
+          suggestion.innerText = matchedSuggestions[i].text;
+          searchSuggestions.appendChild(suggestion);
+        }
+      }
+    }
+  
+
+    searchInput.addEventListener('input', handleSearch);
+  </script>
+  
+<br>
+<br>
+<header class="hero">
+    <div class="container">
+      <h1>Welcome to the Online Library</h1>
+      <ul class="membership-list">
+        <li>
+          <span class="membership-type">Free account:</span> Limited access to a selection of books.
+        </li>
+        <li>
+          <span class="membership-type">Premium membership:</span> Unlock unlimited access, offline reading, personalized recommendations, exclusive content, and more.
+          <br>
+          Upgrade today for an enhanced reading experience.
+        </li>
+      </ul>
+      <button class="scroll-btn" onclick="scrollDown()">Browse Books</button>
+    </div>
+  </header>
+<br>
+<br>
+<br>
+  <section class="book-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="appilied to calculus.png" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">
+                S.T. Tan. Applied Calculus for the Managerial, Life, and Social Sciences
+              </h5>
+              <p class="card-text">Author </p>
+              <a href="Calc.pdf" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="calculus 1.png" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Thomas' Calculus, Early Transcedentals</h5>
+              <p class="card-text">Author </p>
+              <a href="Calc2.pdf" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 3</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book1.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">Book 4</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book2.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Book 5</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 6</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book1.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">Book 7</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book2.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Book 8</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 9</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book1.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">Book 10</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book2.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Book 11</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 12</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book1.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">Book 13</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book2.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Book 14</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 15</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book1.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">Book 16</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book2.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Book 17</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card mb-4">
+            <img src="book3.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Book 18</h5>
+              <p class="card-text">Author </p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2023 eMentor.io - Online Library.</p>
+    </div>
+  </footer>
+  <script>
+    function scrollDown() {
+      window.scrollBy(0, 800); 
+    }
+  </script>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

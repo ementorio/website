@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Chemistry - eMentor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 25%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f171;
+            overflow-x: hidden;
+            transition: 0.3s;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #007BFF;
+        }
+
+        .open-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .open-button:hover {
+            background-color: #0056b3;
+        }
+
+  @media only screen and (min-width:1000px){
+        
+       .open-button {
+          display: none;
+          color: #f1f1f1;
+        }
+
+  }
+
+        .content {
+            margin-left: 0;
+            padding: 16px;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar.open {
+            width: 25%;
+        }
+
+        .content.open {
+            margin-left: 250px;
+        }
+
+      @media only screen and (min-width:770px) {
+        .open-button {
+          display: none;
+          color: #f1f1f1;
+        }
+      }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .sidebar.open {
+                width: 75%;
+            }
+
+            .content.open {
+                margin-left: 100%;
+            }
+        }
+
+        .sidebar-button {
+            width: 100%;
+        }
+
+        .sidebar i {
+            float: left;
+            margin-top: 3.5%;
+            font-size:  28px;
+        }
+
+
+        .sidebar-button {
+            border-color: #3333330d;
+            color:rgb(17, 3, 70);
+        }
+
+
+
+
+  .custom-button {
+    background-color: #0078f900; 
+    color:rgb(49, 47, 49); 
+
+  }
+
+    </style>
+</head>
+<body>
+    <button class="open-button" onclick="toggleNav()">&#9776;</button>
+
+    <div id="mySidebar" class="sidebar">
+        <br>
+         <center>
+            <h1>Algebra I</h1>
+         </center>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <br>
+
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">Atomic Structure</a>
+       </button>
+      
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">The Periodic Table</a>
+       </button>
+      
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">Chemical Bonding</a>
+       </button>
+      
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">Chemical Reactions</a>
+       </button>
+   
+       <button class="sidebar-button document">
+           <i class="fas fa-file-alt"></i>
+           <a href="video2.mp4">Midterm Examination</a>
+       </button>
+
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">Acids and Bases</a>
+       </button>
+      
+       <button class="sidebar-button video">
+           <i class="fas fa-play-circle"></i>
+           <a href="video2.mp4">Gas Laws</a>
+       </button>
+      
+
+       <button class="sidebar-button document">
+           <i class="fas fa-file-alt"></i>
+           <a href="document2.pdf">Final Examination</a>
+       </button>
+   
+    </div>
+
+    <div class="content" id="main">
+    </div>
+
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var content = document.getElementById("main");
+            sidebar.classList.toggle("open");
+            content.classList.toggle("open");
+        }
+    </script>
+</body>
+</html>

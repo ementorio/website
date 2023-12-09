@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eMentor - main</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6cc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-size: 14px;
+        }
+
+        .logo-image {
+            width: 40%;
+            margin-left: 10%;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #007bff;
+        }
+
+        .navbar-nav .nav-item .nav-link.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            width: 30%;
+            height: 100%;
+            background-color: #f8f9fa;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease-in-out;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                position: fixed;
+                left: -330px;
+                top: 0;
+                width: 300px;
+                height: 100%;
+                background-color: #f8f9fa;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease-in-out;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f9f8f8;
+        }
+
+        .sidebar-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .sidebar-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .main {
+            width: 70%;
+            float: right;
+        }
+
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+            width: 80%;
+        }
+
+        .autocomplete input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .download-box {
+            width: 85%;
+            background-color: #007bff;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-align: left;
+            border-radius: 10px;
+            color: #f2f2f2;
+        }
+
+        .download-box h2 {
+            margin: 3%;
+        }
+
+        .download-box p {
+            margin: 3%;
+        }
+
+        .download-box a {
+            margin-left: 5%;
+            width: 25%;
+        }
+
+        @media (max-width: 767px) {
+            .logo-image {
+                width: 38%;
+                margin-left: 9%;
+            }
+
+            .main {
+                width: 100%;
+            }
+
+            .download-box a {
+                margin-left: 5%;
+                width: 40%;
+            }
+        }
+
+
+        h1 {
+          margin-left: 8%;
+          color: #ff6600;
+          font-family:Arial, Helvetica, sans-serif;
+        }
+
+   
+
+        hr {
+            margin: 0 auto; 
+            width: 90%; 
+        }
+
+ .exit-button { 
+  left: 0;
+  right: 0;
+  background-color: #ececec00;
+  color: #393939; 
+  padding: 30px 30px; 
+  text-decoration: none;
+  font-weight: bold; 
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.exit-button a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.exit-icon {
+  width: 20px; 
+  height: 20px;
+  margin-right: 5px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+
+
+.container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .card {
+            flex: 0 0 calc(33.33% - 20px); 
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-decoration: none; 
+            color: #333; 
+        }
+
+        .card h2 {
+            font-family: 'Comfortaa';
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-family: 'Londrina ';
+            font-size: 18px;
+            color: #f1f3e0ea;
+        }
+
+        /* Card colors */
+        .marketing-card {
+            background-color: #ffcc00; /* Yellow */
+        }
+
+        .economics-card {
+            background-color: #3399ff; /* Blue */
+        }
+
+        .aerospace-card {
+            background-color: #ff3366; /* Pink */
+        }
+
+        .design-card {
+            background-color: #ff66cc; /* Purple */
+        }
+
+        .programming-card {
+            background-color: #66ccff; /* Light Blue */
+        }
+
+        .healthcare-card {
+            background-color: #33cc33; /* Green */
+        }
+
+    
+
+        .search-bar {
+            width: 85%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 2%;
+        }
+        @media (max-width: 700px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .card {
+                flex: 0 0 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="Logo1.png" class="logo-image" alt="logo">
+    </a>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<div class="main">
+    <center>
+        <div class="download-box">
+            <br>
+            <h2>eMentor App</h2>
+            <p>Take your learning to the next level with eMentor. Join us today!</p>
+            <a href="https://apps.volt.build/d0f9163c-db06-4ea1-ac40-420bb8307ba6/android.debug.apk"
+               class="btn btn-primary">Download</a>
+            <br>
+            <br>
+        </div>
+    </center>
+    <br>
+    <br>
+    <h1>Career Guidance</h1>
+   <center>
+    <input type="text" id="search" class="search-bar" placeholder="Search careers...">
+   </center>
+    <div class="container">
+        <a href="MarketingGuide.html" class="card marketing-card">
+            <h2>Marketing</h2>
+            <p>
+                Marketing involves promoting and selling products or services to consumers. It's a dynamic field that requires creativity and analytical skills.
+            </p>
+        </a>
+
+        <a href="eConomicsguide.html" class="card economics-card">
+            <h2>Economics</h2>
+            <p>
+                Economics studies the production and distribution of goods and services. Economists analyze data to make informed decisions in various industries.
+            </p>
+        </a>
+
+        <a href="Aerospaceeng.html" class="card aerospace-card">
+            <h2>Aerospace Engineering</h2>
+            <p>
+                Aerospace engineers design and develop aircraft, spacecraft, and related systems. It's a challenging field that explores the wonders of flight and space exploration.
+            </p>
+        </a>
+
+        <a href="DesignGuide.html" class="card design-card">
+            <h2>Design</h2>
+            <p>
+                Designers create visual concepts using computer software or by hand. They communicate ideas that inspire, inform, or captivate consumers.
+            </p>
+        </a>
+
+        <a href="programmingguide.html" class="card programming-card">
+            <h2>Programming</h2>
+            <p>
+                Programmers write code to create software programs and applications. It's a field that requires problem-solving and logical thinking.
+            </p>
+        </a>
+
+        <a href="healthcareguide.html" class="card healthcare-card">
+            <h2>Healthcare</h2>
+            <p>
+                Healthcare professionals provide medical care to patients. It includes a wide range of careers such as doctors, nurses, and pharmacists.
+            </p>
+        </a>
+
+    </div>
+
+    <script>
+        const searchInput = document.getElementById("search");
+        const cards = document.querySelectorAll(".card");
+
+        searchInput.addEventListener("input", () => {
+            const searchValue = searchInput.value.toLowerCase();
+            cards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                if (cardText.includes(searchValue)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+</div>
+<div id="sidebar" class="sidebar">
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="math.html" class="sidebar-item">
+        <img src="Math.png" class="sidebar-icon" alt="Math">
+        <span class="sidebar-text">Math</span>
+    </a>
+    <a href="chemistry.html" class="sidebar-item">
+        <img src="Chemistry.png" class="sidebar-icon" alt="Chemistry">
+        <span class="sidebar-text">Chemistry</span>
+    </a>
+    <a href="Bio.html" class="sidebar-item">
+        <img src="Biology.png" class="sidebar-icon" alt="Biology">
+        <span class="sidebar-text">Biology</span>
+    </a>
+    <a href="physics.html" class="sidebar-item">
+        <img src="Physics.png" class="sidebar-icon" alt="Physics">
+        <span class="sidebar-text">Physics</span>
+    </a>
+    <br>
+
+
+       <div class="exit-button">
+        <a href="index.html">
+          <img src="exit-icon.png" alt="Exit Icon" class="exit-icon">
+          Exit
+        </a>
+      </div>
+</div>
+<script>
+    const navbarBrand = document.querySelector(".navbar-brand");
+    const sidebar = document.getElementById("sidebar");
+
+    navbarBrand.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+
+
+</script>
+</body>
+</html>

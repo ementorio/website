@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - eMentor.io</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #fff;
+            margin-top: 30px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            margin: 10px 0;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+        }
+        .card-header button {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .card-body {
+            animation: fade-in 0.5s;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Frequently Asked Questions</h1>
+        <div id="accordion">
+
+            <!-- FAQ Item 1 -->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            1. What is eMentor.io?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        eMentor.io is an online educational platform that offers a wide range of courses and resources to help you learn and grow in various subjects and fields. We aim to provide high-quality, accessible education to learners of all levels and backgrounds.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2. How do I get started?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        To get started, create a free account on our website. Once you've signed up, browse our extensive course catalog and enroll in the courses that interest you. Our user-friendly platform is designed to make your learning journey as smooth as possible.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="card">
+                <div class="card-header" id="headingThree>
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            3. Is eMentor.io free to use?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        eMentor.io offers both free and paid courses. You have the flexibility to choose between free courses and premium content, which may require a purchase or subscription. This ensures that you can tailor your learning experience to your needs and budget.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            4. Do you offer certificates upon course completion?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        Yes, eMentor.io provides certificates of completion for many of our courses. The availability of certificates varies by course, so please check the course details for more information. These certificates can be a valuable addition to your resume and demonstrate your new skills and knowledge to potential employers.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            5. How can I contact your support team?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        Our support team is available to assist you with any questions or issues. You can contact us via email at support@ementor.io or by phone at +(995) 579-23-59-95. We're here to ensure your learning experience is as smooth as possible.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

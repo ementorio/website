@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Marketplace</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .products {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+        .buy-button {
+            background-color: #ff6600;
+            color: #fff;
+        }
+        .buy-button:hover {
+            background-color: #ff4d00;
+        }
+        .cart-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added for positioning */
+        }
+        .cart-count {
+            background-color: #ff4d00;
+            color: #fff;
+            border-radius: 50%;
+            padding: 4px 8px;
+            width: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .cart-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="products">
+        <div class="container">
+            <h2 class="text-center">Featured Products</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        <img src="product.png" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Product 1</h5>
+                            <p class="card-text">Description of Product 1.</p>
+                            <span class="price">$5.99</span>
+                            <a class="btn btn-primary buy-button" data-price="5.99">Add to Cart</a>
+                            <div class="cart-count">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        <img src="product.png" class="card-img-top" alt="Product 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Product 2</h5>
+                            <p class="card-text">Description of Product 2.</p>
+                            <span class="price">$29.99</span>
+                            <a class="btn btn-primary buy-button" data-price="29.99">Add to Cart</a>
+                            <div class="cart-count">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        <img src="product.png" class="card-img-top" alt="Product 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Product 3</h5>
+                            <p class="card-text">Description of Product 3.</p>
+                            <span class="price">$1.99</span>
+                            <a class="btn btn-primary buy-button" data-price="1.99">Add to Cart</a>
+                            <div class="cart-count">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-card">
+        <div class="container">
+            <h3>Cart</h3>
+            <p>Total Price: <span id="cart-total-price">$0.00</span></p>
+            <button class="btn btn-primary">Checkout</button>
+        </div>
+    </section>
+
+    <!-- Link to Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.min.js"></script>
+    <script>
+        const buyButtons = document.querySelectorAll('.buy-button');
+        const cartCount = document.querySelectorAll('.cart-count'); // Updated to select all cart-count elements
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const sidebar = document.querySelector('.sidebar');
+
+        let cartItems = 0;
+        let totalPrice = 0;
+
+        buyButtons.forEach((button, index) => {
+            button.addEventListener('click', function () {
+                const price = parseFloat(button.getAttribute('data-price'));
+                totalPrice += price;
+                cartItems++;
+                updateCart(index); // Pass the index of the clicked button
+            });
+        });
+
+        function updateCart(index) {
+            cartCount[index].textContent = cartItems; // Update the specific cart count
+            cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        // Toggle sidebar for mobile
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        navbarToggler.addEventListener('click', function () {
+            sidebar.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
